@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:42b63f7eecd01bfdafed816b2893fb2cd60baa7b0aff93c8293d72135bb7334a
-size 335
+import express from "express";
+import {
+  getAllMessages,
+  sendMessage,
+} from "../controller/messageController.js";
+import { isAdminAuthenticated } from "../middlewares/auth.js";
+const router = express.Router();
+
+router.post("/send", sendMessage);
+router.get("/getall", isAdminAuthenticated, getAllMessages);
+
+export default router;

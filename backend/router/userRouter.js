@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5a002c5020d6082aef43983e9b7bd7563a5b60d6f49533deb75dd8c0834923bb
-size 875
+import express from "express";
+import {
+  addNewAdmin,
+  addNewDoctor,
+  getAllDoctors,
+  getUserDetails,
+  login,
+  logoutAdmin,
+  logoutPatient,
+  patientRegister,
+} from "../controller/userController.js";
+import {
+  isAdminAuthenticated,
+  isPatientAuthenticated,
+} from "../middlewares/auth.js";
+
+const router = express.Router();
+
+router.post("/patient/register", patientRegister);
+router.post("/login", login);
+router.post("/admin/addnew", isAdminAuthenticated, addNewAdmin);
+router.post("/doctor/addnew", isAdminAuthenticated, addNewDoctor);
+router.get("/doctors", getAllDoctors);
+router.get("/patient/me", isPatientAuthenticated, getUserDetails);
+router.get("/admin/me", isAdminAuthenticated, getUserDetails);
+router.get("/patient/logout", isPatientAuthenticated, logoutPatient);
+router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
+
+export default router;

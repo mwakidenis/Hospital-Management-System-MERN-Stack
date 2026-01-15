@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f14cd7b70ec1dbe528b13a4dab5c0c34861460f45d4d2cf3e1f73dbdeae9dd92
-size 525
+export const generateToken = (user, message, statusCode, res) => {
+  const token = user.generateJsonWebToken();
+  // Determine the cookie name based on the user's role
+  const cookieName = user.role === 'Admin' ? 'adminToken' : 'patientToken';
+
+  res
+    .status(statusCode)
+    .cookie(cookieName, token, {
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+    })
+    .json({
+      success: true,
+      message,
+      user,
+      token,
+    });
+};
+

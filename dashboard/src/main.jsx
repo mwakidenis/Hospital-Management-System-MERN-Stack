@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d791c4d26e52f51b33cc129afdebe4aadb98a9e6e4566833109b8683fe3cfd7d
-size 612
+import React, { createContext, useState } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+
+export const Context = createContext({ isAuthenticated: false });
+
+const AppWrapper = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [admin, setAdmin] = useState({});
+
+  return (
+    <Context.Provider
+      value={{ isAuthenticated, setIsAuthenticated, admin, setAdmin }}
+    >
+      <App />
+    </Context.Provider>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AppWrapper />
+  </React.StrictMode>
+);

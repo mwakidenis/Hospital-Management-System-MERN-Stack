@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f15842b10fd40a7d334fc805d0a206333a50a81cfa2a7a36e0c5eb109123dee7
-size 57
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

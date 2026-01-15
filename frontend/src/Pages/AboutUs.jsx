@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eb9fc54ce0750c2d0f229058927f39fa75082d0c7f936a0661c8526c199625ca
-size 364
+import React from "react";
+import Hero from "../components/Hero";
+import Biography from "../components/Biography";
+const AboutUs = () => {
+  return (
+    <>
+      <Hero
+        title={"Learn More About Us | ZeeCare Medical Institute"}
+        imageUrl={"/about.png"}
+      />
+      <Biography imageUrl={"/whoweare.png"} />
+    </>
+  );
+};
+
+export default AboutUs;

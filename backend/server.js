@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2daaab61f168595f67f2d17015b37ebc298c5a4bf5fa07735243c9c1f7481421
-size 339
+import app from "./app.js";
+import cloudinary from "cloudinary";
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening at port ${process.env.PORT}`);
+});
